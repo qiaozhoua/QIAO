@@ -1,0 +1,568 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 全栈应用工程师 | 个人简历站点</title>
+  <meta name="description" content="面向求职的中文简历站点，展示 AI 应用系统、全栈交付、自动化能力与工具链整合经验。">
+  <style>
+    :root {
+      --bg: #030712;
+      --surface: rgba(17,24,39,.55);
+      --surface-2: rgba(255,255,255,.04);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: rgba(255,255,255,.10);
+      --font: "PingFang SC","Microsoft YaHei","Noto Sans SC","Segoe UI",system-ui,-apple-system,sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--bg);
+      background-image:
+        radial-gradient(circle at 10% 0%, rgba(236,72,153,.36), transparent 34%),
+        radial-gradient(circle at 90% 0%, rgba(99,102,241,.44), transparent 34%),
+        radial-gradient(circle at 50% 100%, rgba(34,211,238,.30), transparent 34%);
+      line-height: 1.72;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      backdrop-filter: blur(18px);
+      background: rgba(3,7,18,.64);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #ec4899, #6366f1, #22d3ee);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 15px;
+      color: #fff;
+      box-shadow: 0 12px 32px rgba(99,102,241,.28);
+    }
+    .brand strong { font-size: 16px; }
+    .brand span { display: block; font-size: 12px; color: var(--muted); }
+
+    nav { display: flex; gap: 8px; }
+    nav a {
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      text-decoration: none;
+      color: var(--muted);
+      transition: all .18s ease;
+    }
+    nav a:hover, nav a:focus-visible { color: var(--text); background: rgba(255,255,255,.06); }
+    nav a.active { color: #111; background: linear-gradient(90deg, #f472b6, #a78bfa); font-weight: 700; }
+
+    .hero { padding: 52px 0 30px; }
+    .hero-center { text-align: center; max-width: 780px; margin: 0 auto; }
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .03em;
+    }
+    h1 {
+      font-size: 42px;
+      margin-top: 18px;
+      line-height: 1.16;
+      letter-spacing: -.02em;
+      font-weight: 900;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #f472b6, #a78bfa, #67e8f9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .subtitle { margin-top: 14px; color: var(--muted); font-size: 16px; }
+    .actions { margin-top: 20px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all .18s ease;
+      border: 1px solid transparent;
+    }
+    .btn:focus-visible { outline: 2px solid #a78bfa; outline-offset: 2px; }
+    .btn-primary {
+      background: linear-gradient(135deg, #ec4899, #6366f1, #22d3ee);
+      color: #fff;
+      box-shadow: 0 14px 36px rgba(99,102,241,.28);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 46px rgba(99,102,241,.38); }
+    .btn-outline { border: 1px solid rgba(255,255,255,.14); color: var(--text); background: rgba(255,255,255,.04); }
+    .btn-outline:hover { background: rgba(255,255,255,.08); }
+
+    .bento {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 14px;
+    }
+    .bento-card {
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .bento-card:hover { transform: translateY(-6px); border-color: rgba(244,114,182,.35); box-shadow: 0 22px 52px rgba(0,0,0,.36); }
+    .bento-card h3 { font-size: 30px; font-weight: 900; }
+    .bento-card p { margin-top: 4px; color: var(--muted); font-size: 12px; }
+
+    section { padding: 28px 0 36px; }
+    .section-center { text-align: center; margin-bottom: 18px; }
+    .section-pill {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    h2 { font-size: 26px; font-weight: 900; }
+    .section-desc { margin-top: 6px; color: var(--muted); font-size: 14px; }
+
+    .about-card {
+      padding: 26px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    .summary-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 18px; }
+    .summary-item {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .summary-item:hover { transform: translateY(-4px); box-shadow: 0 18px 44px rgba(0,0,0,.34); }
+    .icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      margin: 0 auto 10px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+    }
+    .summary-item strong { display: block; font-size: 14px; }
+    .summary-item span { color: var(--muted); font-size: 13px; }
+
+    .chip-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .chip {
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      transition: all .18s ease;
+    }
+    .chip:hover { border-color: rgba(167,139,250,.42); box-shadow: 0 12px 28px rgba(0,0,0,.28); }
+    .chip strong { display: block; }
+    .chip span { color: var(--muted); }
+
+    .project-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+    .project {
+      display: flex;
+      flex-direction: column;
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .project:hover { transform: translateY(-6px); border-color: rgba(34,211,238,.35); box-shadow: 0 22px 52px rgba(0,0,0,.36); }
+    .project-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+    .project h3 { font-size: 18px; }
+    .project-tag {
+      font-size: 12px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--border);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .project p { margin-top: 10px; color: var(--muted); font-size: 14px; }
+    .project ul { margin-top: 12px; padding-left: 18px; color: var(--muted); font-size: 13px; }
+    .project-foot { margin-top: auto; padding-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      padding: 6px 8px;
+      font-size: 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+    }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .timeline-card { padding: 22px; border-radius: 22px; border: 1px solid var(--border); background: var(--surface); backdrop-filter: blur(10px); }
+    .timeline-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .timeline-card h3 { font-size: 18px; }
+    .timeline-card p { margin-top: 8px; color: var(--muted); font-size: 14px; }
+
+    .contact-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    .contact-card {
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+    .contact-list { margin-top: 10px; display: grid; gap: 8px; justify-items: center; }
+    .contact-list a { color: #67e8f9; text-decoration: none; font-size: 14px; font-weight: 700; }
+    .contact-list a:hover { text-decoration: underline; }
+    .list { margin-top: 10px; padding-left: 18px; color: var(--muted); font-size: 14px; text-align: left; display: inline-block; }
+
+    footer { padding: 28px 0 36px; color: var(--muted); font-size: 13px; text-align: center; }
+    @media (max-width: 980px) { .bento, .project-grid, .contact-grid, .grid-3, .summary-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <a class="brand" href="#top">
+        <div class="brand-mark">AI</div>
+        <div>
+          <strong>AI 全栈应用工程师</strong>
+          <span>个人简历站点</span>
+        </div>
+      </a>
+      <nav>
+        <a href="#about" class="active">关于</a>
+        <a href="#skills">技能</a>
+        <a href="#projects">项目</a>
+        <a href="#timeline">经历</a>
+        <a href="#contact">联系</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-center">
+        <div class="eyebrow">3 年实战 | 外贸公司 IT 全栈 AI 应用开发工程师</div>
+        <h1>用更潮、更清晰的方式<br>展示<span class="gradient-text"> AI 落地能力</span></h1>
+        <p class="subtitle">我擅长 AI 应用系统设计、前端产品交付、自动化流程搭建、模型工具接入和工具链整合，能够把业务需求转化为有记忆点、有结构感、可交付的产品方案。</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">查看项目</a>
+          <a class="btn btn-outline" href="#contact">联系我</a>
+        </div>
+
+        <div class="bento">
+          <div class="bento-card"><h3>3+</h3><p>年实战经验</p></div>
+          <div class="bento-card"><h3>5</h3><p>个代表性项目</p></div>
+          <div class="bento-card"><h3>全栈</h3><p>前端 + AI 应用工程</p></div>
+          <div class="bento-card"><h3>AI 工具</h3><p>工具链 / 模型应用 / 部署经验</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container section-center">
+        <div class="section-pill">关于</div>
+        <h2>个人简介</h2>
+        <p class="section-desc">目前在一家外贸公司担任 IT 全栈 AI 应用开发工程师，专注于把 AI 能力融入真实业务系统。</p>
+        <div class="about-card" style="margin-top:14px">
+          <p>我更关注“可落地”的 AI 产品形态：管理后台、监控看板、决策报告、自动化工具、内容工作流和工具链整合。相比单纯实现功能，我更重视产品结构的合理性、前端体验的清晰度，以及系统后续的可维护性。</p>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-item">
+            <div class="icon-box">⚙️</div>
+            <strong>AI 应用落地</strong>
+            <span>围绕监控、调研、内容、决策等场景，把 AI 工具结合进真实业务流程。</span>
+          </div>
+          <div class="summary-item">
+            <div class="icon-box">🧩</div>
+            <strong>全栈交付能力</strong>
+            <span>从需求拆解到页面结构、数据视图、管理模块和交互方案，完整推进产品落地。</span>
+          </div>
+          <div class="summary-item">
+            <div class="icon-box">🚀</div>
+            <strong>工程化思维</strong>
+            <span>更关注可维护性、复用性、系统清晰度和业务价值，而不是单纯堆功能。</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container section-center">
+        <div class="section-pill">能力</div>
+        <h2>核心技能</h2>
+        <p class="section-desc">围绕 AI 应用工程、前端产品交付、自动化流程和工具链整合形成的能力体系。</p>
+        <div class="chip-grid" style="margin-top:14px">
+          <div class="chip"><strong>前端工程</strong><span>Vue 3 / Vue Router / Pinia / Element Plus</span></div>
+          <div class="chip"><strong>数据可视化</strong><span>ECharts 看板、报表、趋势分析、对比分析</span></div>
+          <div class="chip"><strong>AI 应用设计</strong><span>AI 产品流程、决策模块、调研系统、生成式工作流</span></div>
+          <div class="chip"><strong>业务自动化</strong><span>监控策略、调价策略、预警机制、流程自动执行</span></div>
+          <div class="chip"><strong>工具链整合</strong><span>开源 AI 工具研究、MCP、Docker、部署与落地验证</span></div>
+          <div class="chip"><strong>产品交付</strong><span>需求分析、模块拆分、交互设计、系统落地</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-center">
+          <div class="section-pill">项目</div>
+          <h2>项目经历</h2>
+          <p class="section-desc">按求职展示顺序排列，优先展示最具业务价值和系统完整度的内容。</p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project">
+            <div class="project-top">
+              <div><h3>酒店价格监控与自动调价平台</h3></div>
+              <div class="project-tag">核心业务系统</div>
+            </div>
+            <p>负责一套面向酒店运营管理的业务平台，覆盖监控策略、调价策略、价格历史、报表分析、操作日志和系统配置等核心模块。</p>
+            <ul>
+              <li>主导前端页面结构设计，搭建酒店管理、监控策略、调价策略、价格记录、报表和系统管理等模块。</li>
+              <li>实现价格波动趋势、OTA 采集成功率、价格预警记录和自动改价记录等关键业务看板。</li>
+              <li>设计并交付智能调价策略配置能力，支持“匹配最低价”“均价上浮”等规则类型及风险控制参数。</li>
+              <li>扩展系统管理能力，完善用户、角色、飞书和 PMS 等配置模块。</li>
+            </ul>
+            <div class="project-foot">
+              <span class="tag">Vue 3</span>
+              <span class="tag">Vue Router</span>
+              <span class="tag">Pinia</span>
+              <span class="tag">Element Plus</span>
+              <span class="tag">ECharts</span>
+              <span class="tag">Axios</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-top">
+              <div><h3>AI 外贸产品调研分析系统</h3></div>
+              <div class="project-tag">AI 产品</div>
+            </div>
+            <p>负责梳理一套面向外贸产品立项和调研判断的 AI 产品方案，通过 AI 与数据结合，降低人工经验依赖，提升评估效率和决策质量。</p>
+            <ul>
+              <li>定义产品概念输入、趋势分析、市场与竞品、痛点挖掘、外贸可行性评估等核心流程。</li>
+              <li>设计 AI 产品经理综合判断模块，支持评分、推荐等级、核心理由和结构化结论输出。</li>
+              <li>推动模块化报告生成能力，使系统能够面向业务场景输出可解释的调研结果。</li>
+              <li>以 MVP 思路拆解优先级，确保方案具备阶段性落地和持续扩展能力。</li>
+            </ul>
+            <div class="project-foot">
+              <span class="tag">AI 应用</span>
+              <span class="tag">外贸调研</span>
+              <span class="tag">决策支持</span>
+              <span class="tag">报告生成</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-top">
+              <div><h3>AiToEarn AI 内容营销智能体</h3></div>
+              <div class="project-tag">开源整合实践</div>
+            </div>
+            <p>基于开源项目 AiToEarn 开展 AI Agent 内容营销研究与整合实践，重点关注自动内容生成、多平台分发、工具协议接入与私有化部署流程。</p>
+            <ul>
+              <li>研究 AI Agent 驱动的内容创建、分发和变现工作流。</li>
+              <li>分析项目整体架构，理解后端工作区与前端模块的协作关系。</li>
+              <li>结合 Docker Compose 部署方案，验证服务依赖结构与私有化落地路径。</li>
+              <li>关注 MCP 协议接入方式，积累 AI 工具与 Agent 生态整合经验。</li>
+            </ul>
+            <div class="project-foot">
+              <span class="tag">AI Agent</span>
+              <span class="tag">内容自动化</span>
+              <span class="tag">MCP</span>
+              <span class="tag">Docker</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-top">
+              <div><h3>Codex++ 增强启动器与管理工具</h3></div>
+              <div class="project-tag">工具链研究</div>
+            </div>
+            <p>围绕 Codex++ 项目进行工具链研究与能力分析，重点关注外部增强启动器的工作机制、配置管理方式和开发者工具演进方向。</p>
+            <ul>
+              <li>研究外部启动器如何在不修改原始安装文件的前提下扩展客户端能力。</li>
+              <li>理解基于 Chromium DevTools Protocol 的注入增强机制及其应用场景。</li>
+              <li>分析上游分支 worktree 支持、工具与插件统一管理等关键能力演进。</li>
+              <li>从开发者工具角度总结其对 AI 工作流效率提升的价值。</li>
+            </ul>
+            <div class="project-foot">
+              <span class="tag">开发者工具</span>
+              <span class="tag">启动器</span>
+              <span class="tag">CDP</span>
+              <span class="tag">效率提升</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-top">
+              <div><h3>Appdbg Android 运行时研究</h3></div>
+              <div class="project-tag">开源研究</div>
+            </div>
+            <p>基于开源项目 Appdbg 开展 Android 运行时和调试能力研究，重点关注 JVM 环境下的运行时模拟、方法 hook 以及调试链路理解。</p>
+            <ul>
+              <li>研究如何在原始 Java Virtual Machine 中运行 Android dex 文件。</li>
+              <li>分析运行时特性，包括类改写和 Java 方法 hook。</li>
+              <li>了解面向 transformed class 的方法级调试能力。</li>
+              <li>从工程视角积累逆向分析、运行时调试和工具研究经验。</li>
+            </ul>
+            <div class="project-foot">
+              <span class="tag">Android 研究</span>
+              <span class="tag">JVM</span>
+              <span class="tag">运行时模拟</span>
+              <span class="tag">调试能力</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <div class="container section-center">
+        <div class="section-pill">经历</div>
+        <h2>经历概览</h2>
+        <p class="section-desc">用更简洁的方式概括职业方向和核心能力。</p>
+        <div class="grid-3" style="margin-top:14px">
+          <div class="timeline-card">
+            <div class="timeline-label">近期</div>
+            <h3>AI 应用工程师</h3>
+            <p>负责 AI 应用系统、业务平台、自动化流程、工具链整合和开源项目研究实践。</p>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-label">方向</div>
+            <h3>产品 + 工程</h3>
+            <p>把业务需求转化为结构化 UI 系统、决策模块和可落地的前端产品。</p>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-label">优势</div>
+            <h3>落地导向</h3>
+            <p>重视页面清晰度、数据表达、模块复用、系统可用性和后续维护成本。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-center">
+          <div class="section-pill">联系</div>
+          <h2>联系方式</h2>
+          <p class="section-desc">欢迎沟通 AI 全栈岗位、应用系统建设、工具链落地和产品工程合作机会。</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>联系方式</h3>
+            <div class="contact-list">
+              <a href="mailto:your.email@example.com">your.email@example.com</a>
+              <a href="https://github.com/" target="_blank" rel="noopener">GitHub 主页</a>
+              <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn 主页</a>
+            </div>
+          </div>
+          <div class="contact-card">
+            <h3>求职优势</h3>
+            <p class="section-desc">我更擅长把 AI 能力落成实际可用的业务系统，而不是停留在演示层面。</p>
+            <ul class="list">
+              <li>具备真实业务系统交付经验</li>
+              <li>熟悉 AI 工具与模型应用工作流</li>
+              <li>擅长看板、报表、管理模块设计</li>
+              <li>能把产品需求转成可执行的工程方案</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">AI 全栈应用工程师 · 个人简历站点</div>
+    </footer>
+  </main>
+
+  <script>
+    const navLinks = Array.from(document.querySelectorAll('nav a'));
+    const sections = navLinks
+      .map((link) => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = `#${entry.target.id}`;
+              navLinks.forEach((link) => {
+                link.classList.toggle('active', link.getAttribute('href') === id);
+              });
+            }
+          });
+        },
+        { rootMargin: '-20% 0px -60% 0px', threshold: 0.1 }
+      );
+
+      sections.forEach((section) => observer.observe(section));
+    }
+  </script>
+</body>
+</html>
